@@ -1,0 +1,48 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Aplicação para transporte de pessoas ou encomendas - Components
+
+Container(app, "Aplicativo Mobile", "Flutter", "Permite ao cliente solicitar transporte") {
+    Component(ui, "Interface de Usuário", "Flutter", "Permite ao usuário interagir com o aplicativo")
+    Component(service, "Serviço de Solicitação", "Flutter", "Permite ao usuário fazer solicitações de transporte")
+    Component(payment, "Serviço de Pagamento", "Flutter", "Permite ao usuário fazer pagamentos")
+}
+
+Container(web, "Aplicativo Web", "PHP", "Permite ao administrador gerenciar aplicação em geral.") {
+    Component(uis, "Interface de administrador", "PHP", "Permite ao administrador gerenciar aplicação em geral.")
+    Component(services, "Gestao da aplicação", "Laravel", "Permite ao administrador gerenciar aplicação em geral.")
+}
+
+Container(api, "API Rest", "NodeJS", "Fornece endpoints para o aplicativo móvel")
+
+Container(ec2, "EC2", "AWS", "Serviço de computação na nuvem") {
+    Container(paymentService, "Microserviço de Pagamento", "NodeJS", "Gerencia todas as operações de pagamento")
+    Container(notificationService, "Microserviço de Notificação", "NodeJS", "Gerencia todas as operações de notificação")
+    Container(autenticateService, "Microserviço de Autenticação", "NodeJS", "Gerencia todas as operações de autenticação")
+    Container(geolocationService, "Microserviço de Geolocalização", "NodeJS", "Gerencia todas as operações de geolocalização")
+    Container(solicitationService, "Microserviço de Solicitação", "NodeJS", "Gerencia todas as operações de solicitação")
+}
+
+Container(db, "RDS", "AWS", "Banco de dados relacional na nuvem")
+
+Rel(ui, service, "Usa")
+Rel(ui, payment, "Usa")
+Rel(uis, services, "Usa")
+Rel(service, api, "Se comunica com")
+Rel(payment, api, "Se comunica com")
+Rel(api, paymentService, "Se comunica com")
+Rel(api, notificationService, "Se comunica com")
+Rel(api, autenticateService, "Se comunica com")
+Rel(api, geolocationService, "Se comunica com")
+Rel(api, solicitationService, "Se comunica com")
+Rel(paymentService, db, "Se comunica com")
+Rel(notificationService, db, "Se comunica com")
+Rel(autenticateService, db, "Se comunica com")
+Rel(geolocationService, db, "Se comunica com")
+Rel(solicitationService, db, "Se comunica com")
+Rel(services, api, "Se comunica com")
+
+@enduml

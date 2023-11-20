@@ -1,0 +1,19 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Aplicação para tranposte de pessoas ou encomendas - Contexto
+
+Person(pbc, "Cliente", "Um cliente do aplicativo.")
+System(ibs, "Aplicativo Mobile", "O aplicativo mobile desenvolvido em Flutter.")
+System_Ext(es, "API Rest", "A API Rest desenvolvida em NodeJS. Responsável se comunicar com  outros micro serviços.")
+System_Ext(es2, "Micro Serviços", "Micro serviços desenvolvidos para realizar tarefas específicas.")
+System_Ext(es3, "Banco de Dados", "Um banco de dados relacional.")
+
+Rel(pbc, ibs, "Utiliza")
+Rel(ibs, es, "Utiliza")
+Rel(es, es2, "Utiliza")
+Rel(es2, es3, "Utiliza")
+
+@enduml

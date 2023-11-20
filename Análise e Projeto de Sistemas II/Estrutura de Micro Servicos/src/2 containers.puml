@@ -1,0 +1,35 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Aplicação para transporte de pessoas ou encomendas - Container
+
+Person(person, "Cliente", "Cliente da aplicação", "Cliente")
+System_Boundary(system, "Aplicação para transporte de pessoas ou encomendas") {
+    Container(app, "Aplicativo Mobile", "Flutter", "Permite ao cliente solicitar transporte")
+    Container(api, "API Rest", "NodeJS", "Fornece endpoints para o aplicativo móvel")
+    Container(db, "Banco de Dados", "Relacional", "Armazena informações de usuários, solicitações, etc.")
+    
+    System_Ext(paymentAPI, "API de Pagamento", "Processa pagamentos")
+    System_Ext(notificationAPI, "API de Notificação", "Envia notificações")
+    System_Ext(requestAPI, "API de Solicitações", "Gerencia solicitações")
+    System_Ext(authAPI, "API de Autenticação", "Autentica usuários")
+    System_Ext(geolocationAPI, "API de Geolocalização", "Fornece informações de geolocalização")
+
+    Rel(person, app, "Usa", "HTTPS")
+    Rel(app, api, "Se comunica com", "HTTPS")
+    Rel(api, db, "Lê e grava", "SQL")
+    Rel(api, paymentAPI, "Se comunica com", "HTTPS")
+    Rel(api, notificationAPI, "Se comunica com", "HTTPS")
+    Rel(api, requestAPI, "Se comunica com", "HTTPS")
+    Rel(api, authAPI, "Se comunica com", "HTTPS")
+    Rel(api, geolocationAPI, "Se comunica com", "HTTPS")
+
+    Rel(paymentAPI, db, "Lê e grava", "SQL")
+    Rel(requestAPI, db, "Lê e grava", "SQL")
+    Rel(authAPI, db, "Lê e grava", "SQL")
+
+    Rel(paymentAPI, notificationAPI, "Notifica sobre a conclusão do pagamento", "HTTPS")
+}
+@enduml
