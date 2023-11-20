@@ -61,13 +61,11 @@ A container represents something that hosts code or data. A container is somethi
 Component
 The word "component" is a hugely overloaded term in the software development industry, but in this context a component is simply a grouping of related functionality encapsulated behind a well-defined interface. If you're using a language like Java or C#, the simplest way to think of a component is that it's a collection of implementation classes behind an interface. Aspects such as how those components are packaged (e.g. one component vs many components per JAR file, DLL, shared library, etc) is a separate and orthogonal concern. 
 
-An important point to note here is that all components inside a container typically execute in the same process space. 
-
-#Sobre:
+### Sobre:
 
 Contexto da Aplicação para transporte de pessoas ou encomendas
 
-#A aplicação é composta por vários componentes, conforme descrito abaixo:
+### A aplicação é composta por vários componentes, conforme descrito abaixo:
 Aplicativo Mobile
 
 -O aplicativo mobile é construído em Flutter e permite ao cliente solicitar transporte. Ele é composto por três componentes principais:
@@ -76,18 +74,18 @@ Aplicativo Mobile
     Serviço de Solicitação: Permite ao usuário fazer solicitações de transporte.
     Serviço de Pagamento: Permite ao usuário fazer pagamentos.
 
-#Aplicativo Web
+### Aplicativo Web
 
 -O aplicativo web é construído em PHP e permite ao administrador gerenciar a aplicação em geral. Ele é composto por dois componentes principais:
 
     Interface de administrador: Permite ao administrador gerenciar a aplicação em geral.
     Gestao da aplicação: Permite ao administrador gerenciar a aplicação em geral.
 
-#API Rest
+### API Rest
 
 A API Rest é construída em NodeJS e fornece endpoints para o aplicativo móvel.
 
-#EC2
+### EC2
 
 O EC2 é um serviço de computação na nuvem da AWS que hospeda vários microserviços:
 
@@ -97,10 +95,10 @@ O EC2 é um serviço de computação na nuvem da AWS que hospeda vários microse
     Microserviço de Geolocalização: Gerencia todas as operações de geolocalização.
     Microserviço de Solicitação: Gerencia todas as operações de solicitação.
 
-#RDS
+### RDS
 
 O RDS é um banco de dados relacional na nuvem da AWS.
-#Relacionamentos
+### Relacionamentos
 
     A Interface de Usuário e o Serviço de Pagamento do aplicativo mobile usam o Serviço de Solicitação.
     A Interface de administrador do aplicativo web usa a Gestao da aplicação.
